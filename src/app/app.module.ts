@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ButtonModule } from 'primeng/button';
+import { PrimeModule } from './prime.module';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { ButtonModule } from 'primeng/button';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ButtonModule
+    ButtonModule,
+    PrimeModule,
+    NgImageSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
