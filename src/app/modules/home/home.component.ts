@@ -1,17 +1,21 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { NgImageSliderModule } from 'ng-image-slider';
 import { PrimeModule } from 'src/app/prime.module';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { DepartmentService } from 'src/app/core/services/department/department.service';
+import { Department } from 'src/app/core/interfaces/department';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, PrimeModule, NgImageSliderModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
-export default class HomeComponent {
-  carouselImg: any = [
+export default class HomeComponent implements OnInit {
+  public isLoading: boolean = true;
+
+  public carouselImg: any = [
     {
       image: 'assets/carousel/img1.jpg',
       thumbImage: 'assets/carousel/img1.jpg',
@@ -30,4 +34,21 @@ export default class HomeComponent {
     },
   ];
 
+  public departments: Department[] = [];
+
+  constructor(private _departmentService: DepartmentService) {}
+
+  ngOnInit(): void {
+    this.loadDepartmentData();
+  }
+
+  private loadDepartmentData() {
+    this.isLoading = true;
+    this._departmentService
+      .getDepartments()
+      .subscribe((departments: Department[]) => {
+        this.departments = departments;
+        this.isLoading = false;
+      });
+  }
 }

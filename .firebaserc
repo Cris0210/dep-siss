@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "departamentdb-e463e": {
+      "hosting": {
+        "dep-siss": [
+          "departamentdb-e463e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "departamentdb-e463e"
+  }
+}

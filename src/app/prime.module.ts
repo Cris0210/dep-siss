@@ -39,6 +39,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { PasswordModule } from 'primeng/password';
 import { TreeModule } from 'primeng/tree';
 import { ChartModule } from 'primeng/chart';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   exports: [
@@ -82,6 +83,7 @@ import { ChartModule } from 'primeng/chart';
     PasswordModule,
     TreeModule,
     ChartModule,
+    ProgressSpinnerModule
   ],
 })
 export class PrimeModule {}

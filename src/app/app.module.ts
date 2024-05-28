@@ -7,6 +7,11 @@ import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
 import { PrimeModule } from './prime.module';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpClientModule } from '@angular/common/http';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { NgImageSliderModule } from 'ng-image-slider';
     AppRoutingModule,
     ButtonModule,
     PrimeModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    OAuthModule.forRoot(),
+    HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
+
   ],
   providers: [],
   bootstrap: [AppComponent]
