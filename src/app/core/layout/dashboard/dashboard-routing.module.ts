@@ -19,6 +19,14 @@ const routes: Routes = [
             (m) => m.LoginModule
           ),
       },
+
+      {
+        path: 'details/:id',
+        loadChildren: () =>
+          import('src/app/modules/details/details.module').then(
+            (m) => m.DetailsModule
+          ),
+      },
     ]
   }
 ];

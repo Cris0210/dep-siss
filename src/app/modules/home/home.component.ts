@@ -4,6 +4,7 @@ import { PrimeModule } from 'src/app/prime.module';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { DepartmentService } from 'src/app/core/services/department/department.service';
 import { Department } from 'src/app/core/interfaces/department';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -36,10 +37,17 @@ export default class HomeComponent implements OnInit {
 
   public departments: Department[] = [];
 
-  constructor(private _departmentService: DepartmentService) {}
+  constructor(private _departmentService: DepartmentService,
+  private router: Router
+  ){}
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.loadDepartmentData();
+  }
+
+  public goToDetail (id: string){
+    console.log(id)
+    this.router.navigate([`/details/${id}`]);
   }
 
   private loadDepartmentData() {

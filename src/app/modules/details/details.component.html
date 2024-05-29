@@ -1,0 +1,55 @@
+<div class="layout-main-container">
+    <div class="flex layout-main justify-content-center align-items-center">
+      <p-progressSpinner
+        *ngIf="isLoading"
+        styleClass="w-4rem h-4rem"
+        strokeWidth="8"
+        animationDuration="2s"
+      ></p-progressSpinner>
+      <div *ngIf="!isLoading" class="grid">
+        <img src="{{ departmentDetail.department.photo }}" class="img-detail" />
+        <div class="col-12 xl:col-8">
+          <div class="card">
+            <h2>Detalles</h2>
+            <h4>
+              <strong>Edificio:</strong> {{ departmentDetail.placeData.name }}
+            </h4>
+            <h4>
+              <strong>Piso: N.</strong> {{ departmentDetail.department.floor }}
+            </h4>
+            <h4>
+              <strong>Dirección: </strong>
+              <a href="{{ departmentDetail.placeData.map }}">{{
+                departmentDetail.placeData.address
+              }}</a>
+            </h4>
+            <h3>{{ departmentDetail.department.price }} $us.</h3>
+            <h5>
+              <p>{{ departmentDetail.department.description }}</p>
+            </h5>
+          </div>
+        </div>
+  
+        <div class="col-12 xl:col-4">
+          <div class="card text-center">
+            <h2>Promotor</h2>
+            <img
+              src="{{ departmentDetail.sponsorData.photoURL }}"
+              [alt]=""
+              class="shadow-4 card-img border-circle"
+              width="50%"
+            />
+            <h4>{{ departmentDetail.sponsorData.name }}</h4>
+            <h5>{{ departmentDetail.sponsorData.email }}</h5>
+            <h5>{{ departmentDetail.sponsorData.phone }}</h5>
+            <p-button
+              label="Acordar visita"
+              styleClass="p-button-success"
+              icon="pi pi-whatsapp"
+              (click)="makeWhatsAppCall(departmentDetail.sponsorData.phone || '')"
+            ></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

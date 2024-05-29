@@ -30,4 +30,21 @@ export class UserService {
       setDoc(userRef, data);
     }
   }
+
+  public async getUserById(id: string): Promise<User | null> {
+    try {
+      const userRef = doc(this.firestore, 'users', id);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        return userSnap.data() as User;
+      } else {
+        console.log('No such user document!');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error getting user document:', error);
+      return null;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 export interface Place {
-  addres: string;
+  address: string;
   map: string;
   name: string;
   totalFloor: number;
