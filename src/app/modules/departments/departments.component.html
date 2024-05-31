@@ -1,0 +1,189 @@
+<h1>Registro de Departamentos</h1>
+<p-table
+  [value]="departmentData"
+  [paginator]="true"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[10, 25, 50]"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 25%">Precio</th>
+      <th style="width: 25%">Descripción</th>
+      <th style="width: 25%">Piso</th>
+      <th style="width: 25%">N° de Cuartos</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-department>
+    <tr>
+      <td>{{ department.price }}$us.</td>
+      <td>{{ department.description }}</td>
+      <td>
+        {{ department.floor }}
+      </td>
+      <td>{{ department.roomNumber }}</td>
+      <td>
+        <div class="flex flex-wrap gap-3 justify-content-center">
+          <p-button
+            label="Editar"
+            styleClass="p-button-secondary"
+            icon="pi pi-pencil"
+            (click)="updateDialog(department)"
+          ></p-button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="paginatorleft">
+    <p-button
+      type="button"
+      icon="pi pi-plus"
+      styleClass="p-button-text"
+      label="Registrar"
+      (click)="createDialog()"
+    ></p-button>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  header="{{ title }}"
+  [(visible)]="visible"
+  [style]="{ width: '50vw' }"
+>
+  <form [formGroup]="formDepartment">
+    <div class="p-fluid field">
+      <label htmlFor="description">Descripción *</label>
+      <textarea
+        rows="5"
+        cols="30"
+        pInputTextarea
+        pInputText
+        id="description"
+        formControlName="description"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty':
+            submitted && formDepartment.controls['description'].invalid
+        }"
+      ></textarea>
+      <small
+        class="p-error"
+        *ngIf="
+          submitted && formDepartment.get('description')?.hasError('required')
+        "
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-fluid field">
+      <label htmlFor="floor">Piso *</label>
+      <input
+        type="number"
+        pInputText
+        id="floor"
+        formControlName="floor"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty':
+            submitted && formDepartment.controls['floor'].invalid
+        }"
+      />
+      <small
+        class="p-error"
+        *ngIf="submitted && formDepartment.get('floor')?.hasError('required')"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-fluid field">
+      <label htmlFor="photo">Foto *</label>
+      <input
+        type="text"
+        pInputText
+        id="photo"
+        formControlName="photo"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty':
+            submitted && formDepartment.controls['photo'].invalid
+        }"
+      />
+
+      <small
+        class="p-error"
+        *ngIf="submitted && formDepartment.get('photo')?.hasError('required')"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-fluid field">
+      <label htmlFor="roomNumber">N° de Cuartos *</label>
+      <input
+        type="number"
+        pInputText
+        id="roomNumber"
+        formControlName="roomNumber"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty':
+            submitted && formDepartment.controls['roomNumber'].invalid
+        }"
+      />
+
+      <small
+        class="p-error"
+        *ngIf="
+          submitted && formDepartment.get('roomNumber')?.hasError('required')
+        "
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-fluid field">
+      <label htmlFor="price">Precio *</label>
+      <input
+        type="number"
+        pInputText
+        id="price"
+        formControlName="price"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty':
+            submitted && formDepartment.controls['price'].invalid
+        }"
+      />
+
+      <small
+        class="p-error"
+        *ngIf="submitted && formDepartment.get('price')?.hasError('required')"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-fluid field">
+      <label htmlFor="placeId">Edificio *</label>
+      <p-dropdown
+        [options]="list"
+        optionLabel="name"
+        id="placeId"
+        formControlName="placeId"
+        [ngClass]="{
+          'ng-invalid ng-dirty':
+            submitted && formDepartment.controls['placeId'].invalid
+        }"
+      ></p-dropdown>
+
+      <small
+        class="p-error"
+        *ngIf="submitted && formDepartment.get('placeId')?.hasError('required')"
+        >Campo Requerido</small
+      >
+    </div>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-rounded mr-2"
+      (click)="saveDepartmentData()"
+    ></button>
+  </form>
+</p-dialog>

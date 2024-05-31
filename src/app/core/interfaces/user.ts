@@ -3,6 +3,6 @@ export interface User {
   name: string;
   phone?: string;
   role?: string;
-  subId: string;
-  photoURL: string;
+  subId?: string;
+  photoURL?: string;
 }

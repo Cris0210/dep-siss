@@ -10,7 +10,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('src/app/modules/home/home.module').then((m)=>m.HomeModule)
+          import('src/app/modules/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'login',
@@ -19,7 +19,6 @@ const routes: Routes = [
             (m) => m.LoginModule
           ),
       },
-
       {
         path: 'details/:id',
         loadChildren: () =>
@@ -27,12 +26,17 @@ const routes: Routes = [
             (m) => m.DetailsModule
           ),
       },
-    ]
-  }
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('../settings/settings.module').then((m) => m.SettingsModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

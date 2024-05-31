@@ -1,0 +1,144 @@
+<h1>Registro de Edificios</h1>
+<p-table
+  [value]="places"
+  [paginator]="true"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[10, 25, 50]"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 25%">Nombre</th>
+      <th style="width: 25%">Dirección</th>
+      <th style="width: 25%">Ubicación</th>
+      <th style="width: 25%">Pisos</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-place>
+    <tr>
+      <td>{{ place.name }}</td>
+      <td>{{ place.address }}</td>
+      <td>
+        <p-button
+          (click)="openMapLink(place.map)"
+          icon="pi pi-map-marker"
+          styleClass="p-button-link"
+        ></p-button>
+      </td>
+      <td>{{ place.totalFloor }}</td>
+      <td>
+        <p-button
+          label="Editar"
+          styleClass="p-button-secondary"
+          icon="pi pi-pencil"
+          (click)="updateDialog(place)"
+        ></p-button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="paginatorleft">
+    <p-button
+      type="button"
+      icon="pi pi-plus"
+      styleClass="p-button-text"
+      label="Registrar"
+      (click)="createDialog()"
+    ></p-button>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  header="{{ title }}"
+  [(visible)]="visible"
+  [style]="{ width: '50vw' }"
+>
+  <form [formGroup]="formPlace">
+    <div class="p-fluid field">
+      <label htmlFor="name">Nombre *</label>
+      <input
+        type="text"
+        pInputText
+        id="name"
+        formControlName="name"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty': submitted && formPlace.controls['name'].invalid
+        }"
+      />
+      <small
+        class="p-error"
+        *ngIf="submitted && formPlace.get('name')?.hasError('required')"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-fluid field">
+      <label htmlFor="address">Dirección *</label>
+      <input
+        type="text"
+        pInputText
+        id="address"
+        formControlName="address"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty':
+            submitted && formPlace.controls['address'].invalid
+        }"
+      />
+      <small
+        class="p-error"
+        *ngIf="submitted && formPlace.get('address')?.hasError('required')"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-fluid field">
+      <label htmlFor="map">Ubicación *</label>
+      <input
+        type="text"
+        pInputText
+        id="map"
+        formControlName="map"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty': submitted && formPlace.controls['map'].invalid
+        }"
+      />
+
+      <small
+        class="p-error"
+        *ngIf="submitted && formPlace.get('map')?.hasError('required')"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-fluid field">
+      <label htmlFor="totalFloor">N° de Pisos</label>
+      <input
+        type="number"
+        pInputText
+        id="totalFloor"
+        formControlName="totalFloor"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty':
+            submitted && formPlace.controls['totalFloor'].invalid
+        }"
+      />
+
+      <small
+        class="p-error"
+        *ngIf="submitted && formPlace.get('totalFloor')?.hasError('required')"
+        >Campo Requerido</small
+      >
+    </div>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-rounded mr-2"
+      (click)="savePlaceData()"
+    ></button>
+  </form>
+</p-dialog>

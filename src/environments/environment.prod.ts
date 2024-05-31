@@ -7,4 +7,7 @@ export const environment = {
     apiKey: 'AIzaSyCgUrsN_IblbNj_Nw93bs_dAUTwUnfP_xE',
     authDomain: 'departamentdb-e463e.firebaseapp.com',
     messagingSenderId: '379181629934',
-  },production: true}
+  },production: true, 
+  authClientId:
+  '379181629934-r4phhoqnvct24fd7gddl8tmfuhk2b9s8.apps.googleusercontent.com',
+}
