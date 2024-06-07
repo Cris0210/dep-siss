@@ -40,6 +40,7 @@ import { PasswordModule } from 'primeng/password';
 import { TreeModule } from 'primeng/tree';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   exports: [
@@ -83,7 +84,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     PasswordModule,
     TreeModule,
     ChartModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    GalleriaModule
   ],
 })
 export class PrimeModule {}

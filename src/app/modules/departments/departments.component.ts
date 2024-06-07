@@ -118,6 +118,7 @@ export class DepartmentsComponent implements OnInit {
       price: new FormControl('', [Validators.required]),
       roomNumber: new FormControl('', [Validators.required]),
       placeId: new FormControl('', [Validators.required]),
+      rooms: new FormControl('',[Validators.required])
     });
   }
 }

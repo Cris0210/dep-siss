@@ -10,6 +10,7 @@ export interface Department {
   sponsor: string;
   price: number;
   photo: string;
+  rooms: string;
 }
 
 export interface DepartmentDetail {

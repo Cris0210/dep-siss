@@ -117,6 +117,26 @@
       >
     </div>
     <div class="p-fluid field">
+      <label htmlFor="rooms">Interior *</label>
+      <input
+        type="text"
+        pInputText
+        id="rooms"
+        formControlName="rooms"
+        required
+        [ngClass]="{
+          'ng-invalid ng-dirty':
+            submitted && formDepartment.controls['rooms'].invalid
+        }"
+      />
+
+      <small
+        class="p-error"
+        *ngIf="submitted && formDepartment.get('rooms')?.hasError('required')"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-fluid field">
       <label htmlFor="roomNumber">N° de Cuartos *</label>
       <input
         type="number"
